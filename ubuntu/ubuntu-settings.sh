@@ -10,3 +10,10 @@ EOF
 
 sudo sysctl --system
 
+
+# Disable swap 
+# for current session
+sudo swapoff -a
+# Persistent after reboots
+sudo sed -i.bak '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+

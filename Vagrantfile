@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
   # config.vm.box = "base"
-  config.vm.box = "ubuntu/bionic64"
+  config.vm.box = "bento/ubuntu-20.04"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -67,11 +67,11 @@ Vagrant.configure("2") do |config|
         node.vm.network "forwarded_port", guest: 22, host: "#{2710 + i}"
 
         node.vm.provision "setup-hosts", :type => "shell", :path => "ubuntu/vagrant/setup-hosts.sh" do |s|
-          s.args = ["enp0s8"]
+          s.args = ["eth1"]
         end
 
         node.vm.provision "setup-dns", type: "shell", :path => "ubuntu/update-dns.sh"
-        node.vm.provision "ubuntu-iptables-bridged-traffic", type: "shell", :path => "ubuntu/ubuntu-iptables-bridged-traffic.sh"
+        node.vm.provision "ubuntu-iptables-bridged-traffic", type: "shell", :path => "ubuntu/ubuntu-settings.sh"
         node.vm.provision "install-docker", type: "shell", :path => "ubuntu/install-docker.sh"
         node.vm.provision "install-kube-tools", type: "shell", :path => "ubuntu/install-kube-tools.sh"      
       
@@ -92,11 +92,11 @@ Vagrant.configure("2") do |config|
                 node.vm.network "forwarded_port", guest: 22, host: "#{2720 + i}"
 
         node.vm.provision "setup-hosts", :type => "shell", :path => "ubuntu/vagrant/setup-hosts.sh" do |s|
-          s.args = ["enp0s8"]
+          s.args = ["eth1"]
         end
 
         node.vm.provision "setup-dns", type: "shell", :path => "ubuntu/update-dns.sh"
-        node.vm.provision "ubuntu-iptables-bridged-traffic", type: "shell", :path => "ubuntu/ubuntu-iptables-bridged-traffic.sh"
+        node.vm.provision "ubuntu-iptables-bridged-traffic", type: "shell", :path => "ubuntu/ubuntu-settings.sh"
         node.vm.provision "install-docker", type: "shell", :path => "ubuntu/install-docker.sh"
         node.vm.provision "install-kube-tools", type: "shell", :path => "ubuntu/install-kube-tools.sh"
 
