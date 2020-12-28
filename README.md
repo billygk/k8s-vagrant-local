@@ -57,8 +57,8 @@ Now on each node we would like to join the cluster we should run the command we 
 
 ```
 # From our host box
-$ vagrant ssh kubenode01 -c " ... here we should add the join command ... "
-$ vagrant ssh kubenode02 -c " ... here we should add the join command ... "
+$ vagrant ssh kubenode01 -c "sudo ... here we should add the join command ... "
+$ vagrant ssh kubenode02 -c "sudo ... here we should add the join command ... "
 ...
 ```
 
